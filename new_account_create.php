@@ -65,10 +65,11 @@ VALUES ('$cus_id', '$username', '$password_plain', '$fname', '$lname', '$members
 
 if(mysqli_query($mysqli, $sql)){
     $_SESSION['username'] = $username;
+    $_SESSION['id'] = $cus_id;
     header('Location: end_user.php');
     exit();
 }else {
-    $_SESSION['message'] = 'An error has occurred: ' . $mysqli->error;
+    $_SESSION['message_end_user'] = 'An error has occurred: ' . $mysqli->error;
     header('Location: new_account.php');
     exit();
 }

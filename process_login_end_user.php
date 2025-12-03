@@ -14,19 +14,17 @@ $username = isset($_POST['username']) ? trim($_POST['username']) : '';
 $password_input = isset($_POST['password']) ? $_POST['password'] : '';
 
 // Query database for matching customer
-$sql = "SELECT CUS_USER, CUS_PASS FROM InternetCafe.Customer WHERE CUS_USER = '$username' AND CUS_PASS = '$password'";
+$sql = "SELECT CUS_ID, CUS_USER, CUS_PASS FROM InternetCafe.Customer WHERE CUS_USER = '$username' AND CUS_PASS = '$password_input'";
 $result = $mysqli->query($sql);
 
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
-    // Credentials match
-    if (true) {
-        // Correct login → store username and redirect to welcome page
-        $_SESSION['username'] = $username;
-        $mysqli->close();
-        header("Location: end_user.php");
-        exit();
-    }
+    // Correct login → store username and redirect to welcome page
+    $_SESSION['username'] = $username;
+    $_SESSION['id'] = $row['CUS_ID'];
+    $mysqli->close();
+    header("Location: end_user.php");
+    exit();
 }
 
 // Wrong login → set error message and redirect back
@@ -34,4 +32,3 @@ $_SESSION['error'] = "Wrong username or password!";
 $mysqli->close();
 header("Location: login.php");
 exit();
-?>

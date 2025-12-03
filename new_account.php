@@ -35,9 +35,9 @@ $result = $mysqli->query($sql);
     unset($_SESSION['errors_new_account']);
   }
   
-  if (isset($_SESSION['message'])) {
-    echo '<div class="error">' . htmlspecialchars($_SESSION['message']) . '</div>';
-    unset($_SESSION['message']);
+  if (isset($_SESSION['message_new_account'])) {
+    echo '<div class="error">' . htmlspecialchars($_SESSION['message_new_account']) . '</div>';
+    unset($_SESSION['message_new_account']);
   }
   ?>
   
@@ -82,7 +82,6 @@ $result = $mysqli->query($sql);
 
     <!-- Buttons -->
     <input type="submit" value="Create Account">
-    <input type="reset" value="Reset">
   </form>
 </body>
 </html>
