@@ -10,8 +10,8 @@ if ($mysqli->connect_error) {
     die('Connect Error(' . $mysqli->connect_errno . ')' . $mysqli->connect_error);
 }
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = isset($_POST['username']) ? trim($_POST['username']) : '';
+$password_input = isset($_POST['password']) ? $_POST['password'] : '';
 
 // Query database for matching customer
 $sql = "SELECT CUS_USER, CUS_PASS FROM InternetCafe.Customer WHERE CUS_USER = '$username' AND CUS_PASS = '$password'";

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $user = 'root';
 $password = '123456';
 $database = 'InternetCafe';
@@ -16,10 +18,30 @@ $result = $mysqli->query($sql);
 <html>
 <head>
   <title>Create Customer Account</title>
+  <style>
+    .error { color: red; font-weight: bold; margin-bottom: 10px; }
+  </style>
 </head>
 <body>
   <h1>Create Your Account</h1>
-  <form action="process_customer.php" method="post">
+  
+  <?php
+  if (isset($_SESSION['errors_new_account']) && !empty($_SESSION['errors_new_account'])) {
+    echo '<div class="error">';
+    foreach ($_SESSION['errors_new_account'] as $error) {
+      echo htmlspecialchars($error) . '<br>';
+    }
+    echo '</div>';
+    unset($_SESSION['errors_new_account']);
+  }
+  
+  if (isset($_SESSION['message'])) {
+    echo '<div class="error">' . htmlspecialchars($_SESSION['message']) . '</div>';
+    unset($_SESSION['message']);
+  }
+  ?>
+  
+  <form action="new_account_create.php" method="post">
     <!-- Customer ID -->
     <label for="CUS_ID">Customer ID:</label>
     <input type="text" id="CUS_ID" name="CUS_ID" maxlength="6" required><br><br>

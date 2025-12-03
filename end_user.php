@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $user = 'root';
 $password = '123456';
 $database = 'InternetCafe';
@@ -9,7 +11,6 @@ if ($mysqli->connect_error) {
 	die('Connect Error(' . $mysqli->connect_errno . ')' . $mysqli->connect_error);
 }
 
-session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 
 $sql = "SELECT * FROM InternetCafe.Customer WHERE CUS_USER = '$username'";
