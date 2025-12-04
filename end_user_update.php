@@ -115,7 +115,7 @@ $resultPC = $mysqli->query($sql);
         <label for="CUS_MEMBERSHIP_STAT">Membership Status:</label>
         <select id="CUS_MEMBERSHIP_STAT" name="CUS_MEMBERSHIP_STAT" required>
             <option value="BASIC">BASIC</option>
-            <option value="PREMUIM">PREMUIM</option>
+            <option value="PREMUIM">PREMIUM</option>
         </select><br><br>
 
         <!-- Assigned Computer ID -->
